@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Webhook Integration with webMethods.io</title>
+</head>
+<body>
+    <h1>Webhook Integration with webMethods.io</h1>
+    <form action="https://env288853.int-aws-de.webmethods.io/runflow/v1/webhook/test/1sMzWffCWI" method="POST" enctype="application/json">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br><br>
+        <input type="hidden" name="payload" id="payload">
+        <input type="submit" value="Submit">
+    </form>
+    <script>
+        var form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(form);
+            var payload = {};
+            for (var pair of formData.entries()) {
+                payload[pair[0]] = pair[1];
+            }
+            document.getElementById('payload').value = JSON.stringify(payload);
+            form.submit();
+        });
+    </script>
+</body>
+</html>
